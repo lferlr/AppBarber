@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import { 
   Container, 
   InputArea, 
@@ -10,7 +12,7 @@ import {
   SignMessageButtonTextBold 
 } from './styles';
 
-import Api from '../../Api';
+import ApiServer from '../../ApiServer';
 
 import SignInput from '../../components/SignInput';
 
@@ -28,11 +30,12 @@ export default () => {
   const handleSignClick = async () => {
     if(emailField != '' && passwordField != '') {
 
-      let json = await Api.signIn(emailField, passwordField);
-      if(json.token) {
+      let json = ApiServer.signIn(emailField, passwordField);
+      if(json) {
         alert("DEU CERTO PORRA");
       } else {
         alert("Email e/ou senha incorreto!");
+        console.log(emailField);
       }
 
     } else {

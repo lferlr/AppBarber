@@ -12,7 +12,7 @@ import {
 
 import SignInput from '../../components/SignInput';
 
-import Api from '../../Api';
+import ApiServer from '../../ApiServer';
 
 import BarberLogo from '../../assets/barber.svg';
 import EmailIcon from '../../assets/email.svg';
@@ -29,9 +29,9 @@ export default () => {
 
   const handleSignClick = async () => {
     if(nameField != '' && emailField != '' && passwordField != '') {
-      let res = await Api.signUp(nameField, emailField, passwordField);
+      let res = ApiServer.signUp(nameField, emailField, passwordField);
       console.log(res);
-      if(res.token) {
+      if(res) {
         alert("DEU CERTO");
       } else {
         alert("Erro:" + res.error);

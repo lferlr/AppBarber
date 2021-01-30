@@ -1,0 +1,42 @@
+{
+  "barber": [
+    {
+      "id": 1,
+      "name": "Enzo da Silva Junin",
+      "price": 40.0
+    },
+    {
+      "id": 2,
+      "name": "Junin Mãos de Tesoura",
+      "price": 25.0
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Lucas Rodrigues",
+      "email": "lucasfer14",
+      "password": 123,
+      "favorites": [
+        {
+          "id": 2,
+          "name": "Junin Mãos de Tesoura",
+          "price": 25.0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Marcos Veloso",
+      "email": "marcos.veloso@sempreceub.com",
+      "password": 123,
+      "favorites": [
+        {
+          "id": 1,
+          "name": "Enzo da Silva Junin",
+          "price": 40.0
+        }
+      ]
+    }
+  ]
+}
