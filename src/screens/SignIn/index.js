@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext  } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
+
+import { UserContext } from '../../contexts/UserContext';
 
 import { 
   Container, 
@@ -21,7 +23,7 @@ import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
 
 export default () => {
-
+  const { dispatch: userDispatch } = useContext(UserContext);
   const navigation = useNavigation();
 
   const [ emailField, setEmailField ] = useState('');
@@ -32,7 +34,20 @@ export default () => {
 
       let json = ApiServer.signIn(emailField, passwordField);
       if(json) {
-        alert("DEU CERTO PORRA");
+        await AsyncStorage.setItem('token',json.token);
+
+
+        userDispatch({
+          type: 'setAvatat',
+          payload: {
+            avatar: json.data.avatar
+          }
+        });
+
+        navigation.reset({
+          routes:[{name:'MainTab'}]
+        });
+
       } else {
         alert("Email e/ou senha incorreto!");
         console.log(emailField);
